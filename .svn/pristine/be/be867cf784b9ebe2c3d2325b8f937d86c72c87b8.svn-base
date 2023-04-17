@@ -1,0 +1,38 @@
+package com.ingang.messageroom.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.ingang.mentoring.mapper.MentoringMapper;
+import com.ingang.mentoring.vo.MentoringVO;
+import com.ingang.messageroom.mapper.MessageRoomMapper;
+import com.ingang.messageroom.vo.MessageRoomVO;
+import com.ingang.reservation.mapper.ReservationMapper;
+import com.ingang.reservation.vo.ReservationVO;
+import com.webjjang.util.PageObject;
+
+import lombok.Setter;
+
+@Service
+@Qualifier("messageRoomServiceImpl")
+public class MessageRoomServiceImpl implements MessageRoomService{
+	
+	@Setter(onMethod_ = @Autowired)
+	private MessageRoomMapper mapper;
+	
+
+
+	@Override
+	public int write(MessageRoomVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.write(vo);
+	}
+	// 보기
+	// 등록
+	// 수정
+	// 삭제
+
+} // end of CourseServiceImpl class

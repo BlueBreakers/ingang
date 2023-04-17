@@ -1,0 +1,148 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>강의 결제</title>
+<style type="text/css">
+.filters-content {
+    padding: 20px 0;
+}
+</style>
+
+<script type="text/javascript">
+
+$(function(){
+	$("#card1").keyup(function(){ // 1-> 2
+		var len = $(this).val().length;
+		if(len >= 4){
+			$(this).val($(this).val().substring(0,4));
+			$("#card2").focus();
+		}
+	})
+	
+	$("#card2").keyup(function(){ // 2->3
+		var len = $(this).val().length;
+		if(len >= 4){
+			$(this).val($(this).val().substring(0,4));
+			$("#card3").focus();
+		}
+	})
+	
+	$("#card3").keyup(function(){ // 3->4
+		var len = $(this).val().length;
+		if(len >= 4){
+			$(this).val($(this).val().substring(0,4));
+			$("#card4").focus();
+		}
+	})
+	
+	
+	$("input[name='payMethod']").on("change", function() {
+	  var value = $(this).val();
+	  if (value === "무통장입금") {
+		$(".pay").css("display", "none");
+		$("#depositDiv").css("display", "block");
+	  } else if (value === "신용카드") {
+		$(".pay").css("display", "none");
+		$("#cardDiv").css("display", "block");
+	  }
+	});
+	
+})
+
+</script>
+</head>
+<body>
+	<section class="layout_padding">
+		<div class="container">
+			<h1>결제 페이지</h1>
+			
+			<form action="/enroll/enroll.do" method="post">
+				<input type="hidden" name=totalprice value="${course.price }">
+				<input type="hidden" name=title value="${course.title }">
+				<input type="hidden" name=no value="${course.no }">
+			
+				<div class="filters-content">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>상품 정보</th>
+							<th>상품가격</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img alt="" src="${course.fileName }"></td>
+							<td>${course.title } - ${course.teacher }</td>
+							<td>${course.price }</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				
+				<div class="filters-content">
+					<h4>결제 정보</h4>
+					<div class="row card">
+						<div>이름 : ${member.name }</div>
+						<div>이메일 : ${member.email }</div>
+					</div>
+				</div>
+				 
+				<div class="filters-content">
+					<h4>결제수단 선택</h4>
+					<div class="form-check-inline">
+				      <label class="form-check-label" for="radio1" id="deposit">
+				        <input type="radio" class="form-check-input"  name="payMethod" value="무통장입금">무통장입금
+				      </label>
+				    </div>
+				    <div class="form-check-inline">
+				      <label class="form-check-label" for="radio2" id="card">
+				        <input type="radio" class="form-check-input"  name="payMethod" value="신용카드">신용카드
+				      </label>
+				    </div>
+				    <div class="form-check-inline">
+				      <label class="form-check-label">
+				        <input type="radio" class="form-check-input" disabled>카카오페이
+				      </label>
+				    </div>
+				</div>
+				
+				<div class="filters-content pay" id="depositDiv" style="display: none;">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>은행명</th>
+								<th>계좌번호</th>
+								<th>예금주</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>이젠은행</td>
+								<td>000-00000-000000</td>
+								<td>이젠컴퓨터학원</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="filters-content pay" id="cardDiv" style="display: none;">
+					<input id="card1"> - <input id="card2"> - <input id="card3"> - <input id="card4">
+				</div>
+				
+				<div>
+					<button>결제하기</button>
+					<button type="button" onclick="history.back()">취소</button>
+				</div>
+			
+			</form>
+			
+		</div>
+	</section>
+</body>
+</html>
