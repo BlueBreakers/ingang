@@ -15,6 +15,8 @@
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![2](https://github.com/BlueBreakers/ingang/assets/130963760/e11d9012-f72e-49eb-bc28-2953cb69c278)
+![1](https://github.com/BlueBreakers/ingang/assets/130963760/fc949782-68cb-4202-985d-1d30fedca2a0)
+![3](https://github.com/BlueBreakers/ingang/assets/130963760/a4b9e466-d87a-43e4-b4ef-437e7b6a1671)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
